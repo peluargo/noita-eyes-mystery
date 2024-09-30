@@ -19,18 +19,18 @@ export const getGunNamesInAlphabeticalOrder = (gunNames = GUN_NAMES) => {
     return gunNames.sort()
 }
 
-export const getMessageAsDirectionsConvertedIntoMessageAsBinaries = (
+export const getMessageAsBinary = (
     message = [],
     directionsRepresentingTheValueOne = [ EYE_DIRECTIONS.CENTER ]
 ) => {
     return message.map(line => line.map(direction => directionsRepresentingTheValueOne.includes(direction) ? "1" : "0"))
 }
 
-export const getMessagesAsBinaries = (directionsRepresentingTheValueOne = [ EYE_DIRECTIONS.CENTER ], messages = MESSAGES_AS_DIRECTIONS) => {
+export const getMessagesAsBinary = (directionsRepresentingTheValueOne = [ EYE_DIRECTIONS.CENTER ], messages = MESSAGES_AS_DIRECTIONS) => {
     let messagesAsBinary = {}
 
     Object.entries(messages).forEach(([messageName, message]) => {
-        messagesAsBinary[messageName] = getMessageAsDirectionsConvertedIntoMessageAsBinaries(message, directionsRepresentingTheValueOne)
+        messagesAsBinary[messageName] = getMessageAsBinary(message, directionsRepresentingTheValueOne)
     })
 
     return messagesAsBinary
@@ -104,4 +104,40 @@ export const getXorResultFromAllMessages = (messages = {}) => {
 
 export const getMessageFromFile = (fileName) => {
     return JSON.parse(fs.readFileSync(fileName, "utf8"))
+}
+
+export const getMessageAsString = (message = MESSAGES_AS_DIRECTIONS["EAST_1"]) => {
+    return message.flat().join("")
+}
+
+export const getAllMessagesAsString = (messages = MESSAGES_AS_DIRECTIONS) => {
+    return Object.values(messages).flat(2).join("")
+}
+
+export const getAllMessagesAsBinaryString = (valuesRepresentingTheValueOne = [ EYE_DIRECTIONS.CENTER ], messages = MESSAGES_AS_DIRECTIONS) => {
+    const messagesAsBinary = getMessagesAsBinary(valuesRepresentingTheValueOne, messages)
+    return Object.values(messagesAsBinary).flat(2).join("")
+}
+
+export const getStringSplittedIntoLines = (string = "", numberOfLines = 4) => {
+    const valuesPerLine = Math.floor(string.length / numberOfLines)
+
+    const splittedString = []
+
+    for (let line = 0; line < numberOfLines; line++) {
+        splittedString.push(string.slice(line * valuesPerLine, (line + 1) * valuesPerLine))
+    }
+
+    return splittedString
+}
+
+export const getAllMessagesAsBinaryStringSplittedIntoLines = (numberOfLines = 4, valuesRepresentingTheValueOne = [ EYE_DIRECTIONS.CENTER ], messages = MESSAGES_AS_DIRECTIONS) => {
+    const allMessagesAsBinaryString = getAllMessagesAsBinaryString(valuesRepresentingTheValueOne, messages)
+    return getStringSplittedIntoLines(allMessagesAsBinaryString, numberOfLines)
+}
+
+export const getAllMessagesAsBinaryStringAndSplittedIntoLinesAsPixelLines = (numberOfLines = 4, valuesRepresentingTheValueOne = [ EYE_DIRECTIONS.CENTER ], messages = MESSAGES_AS_DIRECTIONS) => {
+    const allMessagesAsBinaryStringSplittedIntoLines = getAllMessagesAsBinaryStringSplittedIntoLines(numberOfLines, valuesRepresentingTheValueOne, messages)
+
+    return allMessagesAsBinaryStringSplittedIntoLines.map(line => line.split("").map(eye => eye === "1" ? "██" : "  ").join(""))
 }

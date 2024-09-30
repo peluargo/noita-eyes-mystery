@@ -6,19 +6,13 @@ import fileGenerator from "./file-generator.js"
 import EYE_DIRECTIONS from "./data/eye-directions-as-values.json" assert { type: 'json' }
 
 // const messagesAsBinariesWithCenterEyeBeing1 = f.getMessagesAsBinaries([ EYE_DIRECTIONS.CENTER ])
-// const messagesAsBinariesWithUpEyeBeing1 = f.getMessagesAsBinaries([ EYE_DIRECTIONS.UP ])
-// const messagesAsBinariesWithRightEyeBeing1 = f.getMessagesAsBinaries([ EYE_DIRECTIONS.RIGHT ])
-// const messagesAsBinariesWithDownEyeBeing1 = f.getMessagesAsBinaries([ EYE_DIRECTIONS.DOWN ])
-// const messagesAsBinariesWithLeftEyeBeing1 = f.getMessagesAsBinaries([ EYE_DIRECTIONS.LEFT ])
 
 // const messagesAsPixelLinesWithCenterEyeBeing1 = f.getMessagesAsPixelLines(messagesAsBinariesWithCenterEyeBeing1)
-// const messagesAsPixelLinesWithUpEyeBeing1 = f.getMessagesAsPixelLines(messagesAsBinariesWithUpEyeBeing1)
-// const messagesAsPixelLinesWithRightEyeBeing1 = f.getMessagesAsPixelLines(messagesAsBinariesWithRightEyeBeing1)
-// const messagesAsPixelLinesWithDownEyeBeing1 = f.getMessagesAsPixelLines(messagesAsBinariesWithDownEyeBeing1)
-// const messagesAsPixelLinesWithLeftEyeBeing1 = f.getMessagesAsPixelLines(messagesAsBinariesWithLeftEyeBeing1)
 
 // fileGenerator.generate("messages-as-pixel-lines-with-center-eye-being-1", messagesAsPixelLinesWithCenterEyeBeing1)
-// fileGenerator.generate("messages-as-pixel-lines-with-up-eye-being-1", messagesAsPixelLinesWithUpEyeBeing1)
-// fileGenerator.generate("messages-as-pixel-lines-with-right-eye-being-1", messagesAsPixelLinesWithRightEyeBeing1)
-// fileGenerator.generate("messages-as-pixel-lines-with-down-eye-being-1", messagesAsPixelLinesWithDownEyeBeing1)
-// fileGenerator.generate("messages-as-pixel-lines-with-left-eye-being-1", messagesAsPixelLinesWithLeftEyeBeing1)
+
+// 1 2 3 4 6 7 12 14 21 28 37 42 74 84 111 148 222 259 444 518 777 1036 1554 3108
+const numberOfLines = 3
+const allMessagesJoined = f.getAllMessagesAsBinaryStringAndSplittedIntoLinesAsPixelLines(numberOfLines)
+fileGenerator.generate(`all-messages-joined-as-${numberOfLines}-pixel-lines-with-center-eye-being-1`, allMessagesJoined)
+
