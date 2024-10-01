@@ -86,7 +86,7 @@ export const getXorResultFromMessages = (messages = {}, firstMessageName, second
     return getXorResult(firstMessage, secondMessage) 
 }
 
-export const getXorResultFromAllMessages = (messages = {}) => {
+export const getXorResultFromAllMessages = (messages = MESSAGES_AS_DIRECTIONS) => {
     let xorResultFromAllMessages = Array.from(Array(12), () => new Array(39))
 
     Object.values(messages).forEach(message => {
@@ -100,6 +100,38 @@ export const getXorResultFromAllMessages = (messages = {}) => {
     const xorWithoutUndefinedValues = xorResultFromAllMessages.map(line => line.filter(eye => eye))
 
     return xorWithoutUndefinedValues
+}
+
+export const getXorResultComparingAllMessagesAtTheSameTime = (messages = MESSAGES_AS_DIRECTIONS) => {
+    let xorResultFromAllMessages = Array.from(Array(12), () => new Array(39))
+
+    for (let line = 0; line < 12; line++) {
+        for (let eye = 0; eye < 39; eye++) {
+            let currentEyeValue = null
+            let eyeHasChanged = false
+
+            Object.entries(messages).every(([messageName, message]) => {
+                if (!message[line] || !message[line][eye]) {
+                    eyeHasChanged = true
+                    return false
+                }
+                
+                if (currentEyeValue === null) {
+                    currentEyeValue = message[line][eye]
+                    return true
+                } else if (currentEyeValue !== null && currentEyeValue !== message[line][eye]) {
+                    eyeHasChanged = true
+                    return false
+                }
+            })
+
+            if (currentEyeValue === null) xorResultFromAllMessages[line][eye] = null
+            else xorResultFromAllMessages[line][eye] = eyeHasChanged ? "1" : "0"
+        }
+    }
+
+    // return xorResultFromAllMessages.map(line => line.filter(eye => eye))
+    return xorResultFromAllMessages
 }
 
 export const getMessageFromFile = (fileName) => {
@@ -140,4 +172,18 @@ export const getAllMessagesAsBinaryStringAndSplittedIntoLinesAsPixelLines = (num
     const allMessagesAsBinaryStringSplittedIntoLines = getAllMessagesAsBinaryStringSplittedIntoLines(numberOfLines, valuesRepresentingTheValueOne, messages)
 
     return allMessagesAsBinaryStringSplittedIntoLines.map(line => line.split("").map(eye => eye === "1" ? "██" : "  ").join(""))
+}
+
+export const getLineFromMessage = (message = MESSAGES_AS_DIRECTIONS["EAST_1"], lineIndex = 0) => {
+    return message[lineIndex]
+}
+
+export const getLineFromAllMessages = (messages = MESSAGES_AS_DIRECTIONS, lineIndex = 0) => {
+    return Object.values(messages).map(message => getLineFromMessage(message, lineIndex))
+}
+
+export const getLineAsPixelFromAllMessages = (lineIndex = 0, messages = MESSAGES_AS_DIRECTIONS) => {
+    const lines = getLineFromAllMessages(messages, lineIndex)
+    const pixelLines = lines.map(line => line.map(eye => eye === "1" ? "██" : "  ").join(""))
+    return pixelLines
 }

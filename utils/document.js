@@ -1,7 +1,10 @@
 import * as fs from 'fs'
 import path from 'path'
+import slugify from 'slugify'
 
 const createDirectory = (dirname) => {
+    console.log(`Creating directory "${dirname}"...`)
+
     const __dirname = path.resolve()
 
     dirname = dirname.replace(/^\.*\/|\/?[^\/]+\.[a-z]+|\/$/g, '')
@@ -32,17 +35,21 @@ const createFile = (filename, data, ext) => {
     )
 }
 
-export default {
+const getSlugifiedText = (text) => {
+    return slugify(text, { lower: true })
+}
 
-    generate(filename = String(new Date().getTime()), data = 'some data', { ext, dirname } = { ext: 'json', dirname: 'output' }) {
-        if (!fs.existsSync(dirname)) {
-            console.warn(`Directory "${dirname}" does not exist!`)
-            console.log(`Creating directory "${dirname}"...`)
-            
-            fs.mkdirSync(dirname, { recursive: true })
-        }
+const directoryDoesNotExist = (dirname) => {
+    return !fs.existsSync(dirname)
+}
 
-        createFile(`${dirname}/${filename}`, data, ext)
+export const document = (description = '', data = 'some data', { ext, dirname } = { ext: 'json', dirname: 'output' }) => {
+    const filename = getSlugifiedText(`${String(new Date().getTime())} ${description}`)
+
+    if (directoryDoesNotExist(dirname)) {
+        console.warn(`Directory "${dirname}" does not exist!`)
+        createDirectory(dirname)
     }
 
+    createFile(`${dirname}/${filename}`, data, ext)
 }
