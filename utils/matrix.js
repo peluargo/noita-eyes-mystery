@@ -18,6 +18,6 @@ export const getHighestMatrixHeight = (matrices = [[[0, 1, 2], [3, 1, 1]], [[0, 
     return Math.max(...matrices.map(matrix => getMatrixHeight(matrix)))
 }
 
-export const getMatrixWithoutEmptyValues = (matrix = [["A", "B", "C"], ["D", "E", "F"]]) => {
+export const getMatrixWithoutEmptyValues = (matrix = [[null, "B", undefined], ["D", " ", "F"]]) => {
     return matrix.map(line => line.filter(column => column !== null && column !== undefined && column !== ""))
 }

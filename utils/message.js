@@ -1,3 +1,4 @@
+import { getBase10TrigramAsLetters } from './gun-name.js'
 import { getHighestMatrixHeight, getHighestMatrixWidth, getMatrix, getMatrixHeight, getMatrixWidth, getMatrixWithoutEmptyValues } from './matrix.js'
 import { getBitAsPixel } from './pixel.js'
 
@@ -192,4 +193,25 @@ export const getXorOfMessages = (
     }
 
     return removeEmptyValues ? getMatrixWithoutEmptyValues(matrix) : matrix
+}
+
+export const getMessageEyesQuantity = (message = [[0, 1, 2], [0, 2, 2]]) => {
+    return message.flat(2).length
+}
+
+export const getMessageTrigramsQuantity = (message = [[0, 1, 2], [0, 2, 2]]) => {
+    return getMessageEyesQuantity(message) / 3
+}
+
+export const getMessageInfo = (message = [[0, 1, 2], [0, 2, 2]]) => {
+    return {
+        width: getMatrixWidth(message),
+        height: getMatrixHeight(message),
+        quantityOfEyes: getMessageEyesQuantity(message),
+        quantityOfTrigrams: getMessageTrigramsQuantity(message)
+    }
+}
+
+export const getBase10TrigramMessageAsLetters = (message = [[11, 22, 33], [44, 55, 66]]) => {
+    return message.map(line => line.map(column => getBase10TrigramAsLetters(column)))
 }
