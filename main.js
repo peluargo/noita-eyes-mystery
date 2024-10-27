@@ -6,10 +6,20 @@ import { allMessagesInBase10TrigramsAsGunNamesLetters } from "./use-cases/all-me
 import { getAllMessagesAsTrigrams } from "./use-cases/all-messages-as-trigrams.js"
 import { getAllMessagesAsStringTrigrams } from "./use-cases/all-messages-as-string-trigrams.js"
 import { getAllUniqueTrigramsByMessage } from "./use-cases/all-unique-trigrams-by-message.js"
+import { getAllUniqueTrigrams } from "./use-cases/all-unique-trigrams.js"
+import { getAllMessagesAsZigzagTrigrams } from "./use-cases/all-messages-as-zigzag-trigrams.js"
+import { getAllMessagesAsStringZigzagTrigrams } from "./use-cases/all-messages-as-string-zigzag-trigrams.js"
+import { getAllUniqueZigzagTrigramsByMessage } from "./use-cases/all-unique-zigzag-trigrams-by-message.js"
+import { getAllUniqueZigzagTrigrams } from "./use-cases/all-unique-zigzag-trigrams.js"
 
 // getAllMessagesInfo()
 // getAllMessagesAsPixelImagesWithCenterEyeBeingOne()
 // allMessagesInBase10TrigramsAsGunNamesLetters()
 // getAllMessagesAsTrigrams()
 // getAllMessagesAsStringTrigrams()
-getAllUniqueTrigramsByMessage()
+// getAllUniqueTrigramsByMessage()
+// getAllUniqueTrigrams()
+// getAllMessagesAsZigzagTrigrams()
+// getAllMessagesAsStringZigzagTrigrams()
+// getAllUniqueZigzagTrigramsByMessage()
+getAllUniqueZigzagTrigrams()

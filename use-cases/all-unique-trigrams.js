@@ -1,13 +1,10 @@
-import MESSAGES_AS_STRING_TRIGRAMS from "../data/1730036522469-all-messages-as-string-trigrams.json" assert { type: 'json' }
+import ALL_UNIQUE_TRIGRAMS_BY_MESSAGE from "../data/1730037450732-all-unique-trigrams-by-message.json" assert { type: 'json' }
 import { document } from "../utils/document.js"
-import { getMessageAsStringTrigrams } from "../utils/message.js"
 
 export const getAllUniqueTrigrams = () => {
-    let result = {}
+    let allMessagesUnited = Object.values(ALL_UNIQUE_TRIGRAMS_BY_MESSAGE)
 
-    Object.entries(MESSAGES_AS_STRING_TRIGRAMS).map(([messageName, message]) => {
-        result[messageName] = getMessageAsStringTrigrams(message)
-    })
+    let result = Array.from(new Set(allMessagesUnited.flat())).sort()
 
-    document("all unique trigrams by message", result)
+    document("all unique trigrams", result)
 }

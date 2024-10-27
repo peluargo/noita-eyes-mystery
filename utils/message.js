@@ -1,7 +1,7 @@
 import { getBase10TrigramAsLetters } from './gun-name.js'
 import { getHighestMatrixHeight, getHighestMatrixWidth, getMatrix, getMatrixHeight, getMatrixWidth, getMatrixWithoutEmptyValues } from './matrix.js'
 import { getBitAsPixel } from './pixel.js'
-import { getTrigramAsString, wikiPointingDownTrigram, wikiPointingUpTrigram } from './trigram.js'
+import { getTrigramAsString, wikiPointingDownTrigram, wikiPointingUpTrigram, zigzagPointingDownTrigram, zigzagPointingUpTrigram } from './trigram.js'
 
 export const getMessageAsString = (message = [["A", "B", "C"], ["D", "E", "F"]]) => {
     return message.flat().join("")
@@ -226,6 +226,27 @@ export const getMessageAsTrigrams = (message = [[0, 1, 2], [0, 2, 2]]) => {
         for (let column = 0; column < message[line].length; column += 3) {
             const pointingDownTrigram = wikiPointingDownTrigram(message, line, column)
             const pointingUpTrigram = wikiPointingUpTrigram(message, line, column)
+
+            if (pointingDownTrigram.length > 0) trigramLine.push(pointingDownTrigram)
+            if (pointingUpTrigram.length > 0) trigramLine.push(pointingUpTrigram)
+        }
+
+        trigramMessage.push(trigramLine)
+    }
+
+    return trigramMessage
+}
+
+
+export const getMessageAsZigZagTrigrams = (message = [[0, 1, 2], [0, 2, 2]]) => {
+    let trigramMessage = []
+
+    for (let line = 0; line < message.length; line += 2) {
+        let trigramLine = []
+
+        for (let column = 0; column < message[line].length; column += 3) {
+            const pointingDownTrigram = zigzagPointingDownTrigram(message, line, column)
+            const pointingUpTrigram = zigzagPointingUpTrigram(message, line, column)
 
             if (pointingDownTrigram.length > 0) trigramLine.push(pointingDownTrigram)
             if (pointingUpTrigram.length > 0) trigramLine.push(pointingUpTrigram)

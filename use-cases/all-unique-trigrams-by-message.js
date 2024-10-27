@@ -9,5 +9,5 @@ export const getAllUniqueTrigramsByMessage = () => {
         result[messageName] = getUniqueTrigramsByMessage(message)
     })
 
-    document("all messages as string trigrams", result)
+    document("all unique trigrams by message", result)
 }
