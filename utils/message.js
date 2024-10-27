@@ -1,6 +1,7 @@
 import { getBase10TrigramAsLetters } from './gun-name.js'
 import { getHighestMatrixHeight, getHighestMatrixWidth, getMatrix, getMatrixHeight, getMatrixWidth, getMatrixWithoutEmptyValues } from './matrix.js'
 import { getBitAsPixel } from './pixel.js'
+import { getTrigramAsString, wikiPointingDownTrigram, wikiPointingUpTrigram } from './trigram.js'
 
 export const getMessageAsString = (message = [["A", "B", "C"], ["D", "E", "F"]]) => {
     return message.flat().join("")
@@ -214,4 +215,32 @@ export const getMessageInfo = (message = [[0, 1, 2], [0, 2, 2]]) => {
 
 export const getBase10TrigramMessageAsLetters = (message = [[11, 22, 33], [44, 55, 66]]) => {
     return message.map(line => line.map(column => getBase10TrigramAsLetters(column)))
+}
+
+export const getMessageAsTrigrams = (message = [[0, 1, 2], [0, 2, 2]]) => {
+    let trigramMessage = []
+
+    for (let line = 0; line < message.length; line += 2) {
+        let trigramLine = []
+
+        for (let column = 0; column < message[line].length; column += 3) {
+            const pointingDownTrigram = wikiPointingDownTrigram(message, line, column)
+            const pointingUpTrigram = wikiPointingUpTrigram(message, line, column)
+
+            if (pointingDownTrigram.length > 0) trigramLine.push(pointingDownTrigram)
+            if (pointingUpTrigram.length > 0) trigramLine.push(pointingUpTrigram)
+        }
+
+        trigramMessage.push(trigramLine)
+    }
+
+    return trigramMessage
+}
+
+export const getMessageAsStringTrigrams = (message = [[0, 1, 2], [0, 2, 2]]) => {
+    return message.map(line => line.map(trigram => getTrigramAsString(trigram)))
+}
+
+export const getUniqueTrigramsByMessage = (message = [['012']['022']]) => {
+    return Array.from(new Set(message.flat(2))).sort()
 }

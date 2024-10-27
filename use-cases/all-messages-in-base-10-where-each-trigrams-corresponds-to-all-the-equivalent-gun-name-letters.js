@@ -3,11 +3,11 @@ import { document } from "../utils/document.js"
 import { getBase10TrigramMessageAsLetters } from "../utils/message.js"
 
 export const allMessagesInBase10TrigramsAsGunNamesLetters = () => {
-    const allMessagesAsLetters = {}
+    const result = {}
     
     Object.entries(MESSAGES_IN_TRIGRAMS_AS_BASE_10).forEach(([messageName, message]) => {
-        allMessagesAsLetters[messageName] = getBase10TrigramMessageAsLetters(message)
+        result[messageName] = getBase10TrigramMessageAsLetters(message)
     })
     
-    document("all messages in base 10 trigrams as gun names letters", allMessagesAsLetters)
+    document("all messages in base 10 trigrams as gun names letters", result)
 }

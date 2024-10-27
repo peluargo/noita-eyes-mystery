@@ -3,26 +3,26 @@ import { document } from "../utils/document.js"
 import { getMessageInfo } from "../utils/message.js"
 
 export const getAllMessagesInfo = () => {
-    let allMessagesInfo = {}
+    let result = {}
 
     Object.entries(MESSAGES_AS_DIRECTIONS).map(([messageName, message]) => {
-        allMessagesInfo[messageName] = getMessageInfo(message)
+        result[messageName] = getMessageInfo(message)
     })
 
     const generalInfo = {
-        totalQuantityOfEyes: Object.values(allMessagesInfo).reduce((total, messageInfo) => total + messageInfo.quantityOfEyes, 0),
-        totalQuantityOfMessages: Object.keys(allMessagesInfo).length,
-        totalQuantityOfTrigrams: Object.values(allMessagesInfo).reduce((total, messageInfo) => total + messageInfo.quantityOfTrigrams, 0),
+        totalQuantityOfEyes: Object.values(result).reduce((total, messageInfo) => total + messageInfo.quantityOfEyes, 0),
+        totalQuantityOfMessages: Object.keys(result).length,
+        totalQuantityOfTrigrams: Object.values(result).reduce((total, messageInfo) => total + messageInfo.quantityOfTrigrams, 0),
         totalQuantityOfUniqueTrigrams: 83,
-        oddMessages: Object.entries(allMessagesInfo).filter(([messageName, messageInfo]) => messageInfo.quantityOfEyes % 2 === 1).map(([messageName, messageInfo]) => messageName),
-        evenMessages: Object.entries(allMessagesInfo).filter(([messageName, messageInfo]) => messageInfo.quantityOfEyes % 2 === 0).map(([messageName, messageInfo]) => messageName),
-        messageWithMostEyes: Object.entries(allMessagesInfo).reduce((a, b) => a[1].quantityOfEyes > b[1].quantityOfEyes ? a : b)[0],
-        messageWithLeastEyes: Object.entries(allMessagesInfo).reduce((a, b) => a[1].quantityOfEyes < b[1].quantityOfEyes ? a : b)[0],
+        oddMessages: Object.entries(result).filter(([messageName, messageInfo]) => messageInfo.quantityOfEyes % 2 === 1).map(([messageName, messageInfo]) => messageName),
+        evenMessages: Object.entries(result).filter(([messageName, messageInfo]) => messageInfo.quantityOfEyes % 2 === 0).map(([messageName, messageInfo]) => messageName),
+        messageWithMostEyes: Object.entries(result).reduce((a, b) => a[1].quantityOfEyes > b[1].quantityOfEyes ? a : b)[0],
+        messageWithLeastEyes: Object.entries(result).reduce((a, b) => a[1].quantityOfEyes < b[1].quantityOfEyes ? a : b)[0],
     }
 
     const info = {
         generalInfo,
-        allMessagesInfo
+        result
     }
 
     document("general and specific info about the messages", info)

@@ -4,10 +4,10 @@ import { getMessageAsPixelImage } from "../utils/message.js"
 import { document } from "../utils/document.js"
 
 export const getAllMessagesAsPixelImagesWithCenterEyeBeingOne = () => {
-    let allMessagesAsPixelImages = {}
+    let result = {}
 
     Object.entries(MESSAGES_AS_DIRECTIONS).map(([messageName, message]) => {
-        allMessagesAsPixelImages[messageName] = getMessageAsPixelImage(
+        result[messageName] = getMessageAsPixelImage(
             message,
             { 
                 valuesToOne: [ EYE_DIRECTIONS.CENTER ],
@@ -19,5 +19,5 @@ export const getAllMessagesAsPixelImagesWithCenterEyeBeingOne = () => {
         )
     })
 
-    document("all messages as pixel images with center eye being one", allMessagesAsPixelImages)
+    document("all messages as pixel images with center eye being one", result)
 }
