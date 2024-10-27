@@ -1,7 +1,7 @@
 import { getBase10TrigramAsLetters } from './gun-name.js'
 import { getHighestMatrixHeight, getHighestMatrixWidth, getMatrix, getMatrixHeight, getMatrixWidth, getMatrixWithoutEmptyValues } from './matrix.js'
 import { getBitAsPixel } from './pixel.js'
-import { getTrigramAsString, wikiPointingDownTrigram, wikiPointingUpTrigram, zigzagPointingDownTrigram, zigzagPointingUpTrigram } from './trigram.js'
+import { getTrigramAsString, rotated180DegreesTrigram, wikiPointingDownTrigram, wikiPointingUpTrigram, zigzagPointingDownTrigram, zigzagPointingUpTrigram } from './trigram.js'
 
 export const getMessageAsString = (message = [["A", "B", "C"], ["D", "E", "F"]]) => {
     return message.flat().join("")
@@ -256,6 +256,28 @@ export const getMessageAsZigZagTrigrams = (message = [[0, 1, 2], [0, 2, 2]]) => 
     }
 
     return trigramMessage
+}
+
+/**
+ * 
+ * "trigramIndex % 2 !== 0" represents a "pointing up" trigram:
+ * 
+ *    <5>
+ *  <4> <6>
+ */
+export const getMessageAsZigZagAnd180DegreesRotatedPointingUpTrigrams = (message = [[[0, 1, 2], [2, 3, 4]], [[0, 1, 2], [2, 3, 4]]]) => {
+    return message.map(line => line.map((trigram, trigramIndex) => Number(trigramIndex) % 2 !== 0 ? rotated180DegreesTrigram(trigram) : trigram))
+}
+
+/**
+ * 
+ * "trigramIndex % 2 === 0" represents a "pointing down" trigram:
+ * 
+ * <1> <3>
+ *   <2>
+ */
+export const getMessageAsZigZagAnd180DegreesRotatedPointingDownTrigrams = (message = [[[0, 1, 2], [2, 3, 4]], [[0, 1, 2], [2, 3, 4]]]) => {
+    return message.map(line => line.map((trigram, trigramIndex) => trigramIndex % 2 === 0 ? rotated180DegreesTrigram(trigram) : trigram))
 }
 
 export const getMessageAsStringTrigrams = (message = [[0, 1, 2], [0, 2, 2]]) => {

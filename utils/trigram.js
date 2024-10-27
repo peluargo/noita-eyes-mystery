@@ -105,3 +105,20 @@ export const groupTrigramsAsPairs = (message) => {
 export const getTrigramAsString = (trigram) => {
     return trigram.join("")
 }
+
+export const rotated180DegreesTrigram = (trigram) => {
+    return trigram.map(eye => {
+        switch(eye) {
+            case "0":
+                return "0";
+            case "1":
+                return "3";
+            case "2":
+                return "4";
+            case "3":
+                return "1";
+            case "4":
+                return "2";
+        }
+    })
+}
