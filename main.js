@@ -11,17 +11,24 @@ import { getAllMessagesAsZigzagTrigrams } from "./use-cases/all-messages-as-zigz
 import { getAllMessagesAsStringZigzagTrigrams } from "./use-cases/all-messages-as-string-zigzag-trigrams.js"
 import { getAllUniqueZigzagTrigramsByMessage } from "./use-cases/all-unique-zigzag-trigrams-by-message.js"
 import { getAllUniqueZigzagTrigrams } from "./use-cases/all-unique-zigzag-trigrams.js"
-import { getAllMessagesAsZigzagAnd180DegreesRotatedPointingUpTrigrams } from "./use-cases/all-messages-as-zigzag-180-degrees-rotated-pointing-up-trigrams copy.js"
+import { getAllMessagesAsZigzagAnd180DegreesRotatedPointingUpTrigrams } from "./use-cases/all-messages-as-zigzag-180-degrees-rotated-pointing-up-trigrams.js"
 import { getAllMessagesAsStringZigzagAnd180DegreesRotatedPointingUpTrigrams } from "./use-cases/all-messages-as-string-zigzag-and-rotated-180-degrees-pointing-up-trigrams.js"
+import { getAllUniqueZigzagAnd180DegreesRotatedPointingUpTrigramsByMessage } from "./use-cases/all-unique-zigzag-and-rotated-180-degrees-pointing-up-trigrams-by-message.js"
 import { getAllUniqueZigzagAnd180DegreesRotatedPointingUpTrigrams } from "./use-cases/all-unique-zigzag-and-rotated-180-degrees-pointing-up-trigrams.js"
+import { getAllMessagesAsZigzagAnd180DegreesRotatedPointingDownTrigrams } from "./use-cases/all-messages-as-zigzag-180-degrees-rotated-pointing-down-trigrams.js"
+import { getAllMessagesAsStringZigzagAnd180DegreesRotatedPointingDownTrigrams } from "./use-cases/all-messages-as-string-zigzag-and-rotated-180-degrees-pointing-down-trigrams.js"
+import { getAllUniqueZigzagAnd180DegreesRotatedPointingDownTrigramsByMessage } from "./use-cases/all-unique-zigzag-and-rotated-180-degrees-pointing-down-trigrams-by-message.js"
+import { getAllUniqueZigzagAnd180DegreesRotatedPointingDownTrigrams } from "./use-cases/all-unique-zigzag-and-rotated-180-degrees-pointing-down-trigrams.js"
 
 // getAllMessagesInfo()
 // getAllMessagesAsPixelImagesWithCenterEyeBeingOne()
 // allMessagesInBase10TrigramsAsGunNamesLetters()
+
 // getAllMessagesAsTrigrams()
 // getAllMessagesAsStringTrigrams()
 // getAllUniqueTrigramsByMessage()
 // getAllUniqueTrigrams()
+
 // getAllMessagesAsZigzagTrigrams()
 // getAllMessagesAsStringZigzagTrigrams()
 // getAllUniqueZigzagTrigramsByMessage()
@@ -30,4 +37,9 @@ import { getAllUniqueZigzagAnd180DegreesRotatedPointingUpTrigrams } from "./use-
 // getAllMessagesAsZigzagAnd180DegreesRotatedPointingUpTrigrams()
 // getAllMessagesAsStringZigzagAnd180DegreesRotatedPointingUpTrigrams()
 // getAllUniqueZigzagAnd180DegreesRotatedPointingUpTrigramsByMessage()
-getAllUniqueZigzagAnd180DegreesRotatedPointingUpTrigrams()
+// getAllUniqueZigzagAnd180DegreesRotatedPointingUpTrigrams()
+
+// getAllMessagesAsZigzagAnd180DegreesRotatedPointingDownTrigrams()
+// getAllMessagesAsStringZigzagAnd180DegreesRotatedPointingDownTrigrams()
+// getAllUniqueZigzagAnd180DegreesRotatedPointingDownTrigramsByMessage()
+getAllUniqueZigzagAnd180DegreesRotatedPointingDownTrigrams()
